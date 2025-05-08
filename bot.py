@@ -14,6 +14,7 @@ DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 DISCORD_SERVER_ID = int(os.getenv("DISCORD_SERVER_ID"))
 WELCOME_CHANNEL_ID = int(os.getenv("WELCOME_CHANNEL_ID"))
 APPLY_CHANNEL_ID = int(os.getenv("APPLY_CHANNEL_ID"))
+PING_CTA_CHANNEL_ID = int(os.getenv("PING_CTA_CHANNEL_ID"))
 
 # --- Vietnam timezone ---
 VIETNAM_TZ = timezone(timedelta(hours=7))
@@ -308,7 +309,7 @@ async def zvz_alert_loop():
                 to_send.append((alert, massing_countdown))
 
         for alert, massing_countdown in to_send:
-            channel = client.get_channel(WELCOME_CHANNEL_ID)
+            channel = client.get_channel(PING_CTA_CHANNEL_ID)
             role = discord.utils.get(channel.guild.roles, id=alert["role_id"])
 
             if channel and role:
