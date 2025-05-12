@@ -158,7 +158,7 @@ async def move_all(interaction: discord.Interaction, source: discord.VoiceChanne
     for member in source.members:
         try:
             await member.move_to(destination)
-            await asyncio.sleep(0.5)
+            await asyncio.sleep(0.3)
         except Exception as e:
             print(f"Failed to move {member.display_name}: {e}")
 
