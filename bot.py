@@ -154,16 +154,19 @@ async def move_all(interaction: discord.Interaction, source: discord.VoiceChanne
         )
         return
 
+    await interaction.response.defer(thinking=True)  # Acknowledge first
+
     moved = 0
     for member in source.members:
         try:
             await member.move_to(destination)
             await asyncio.sleep(0.3)
+            moved += 1
         except Exception as e:
             print(f"Failed to move {member.display_name}: {e}")
 
 
-    await interaction.response.send_message(
+    await interaction.followup.send(
         f"✅ Moved {moved} member(s) from **{source.name}** to **{destination.name}**.",
         ephemeral=True
     )
